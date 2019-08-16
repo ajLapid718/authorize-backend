@@ -3,6 +3,6 @@ const databaseName = "authorize-backend";
 
 console.log("Opening database connection");
 
-const db = new Sequelize(`postgres://localhost:5432/${databaseName}`, { logging: false });
+const db = new Sequelize(`postgres://localhost:5432/${databaseName}`, { logging: false, query: { raw: true } });
 
 module.exports = db;
