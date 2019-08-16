@@ -5,3 +5,5 @@ const passport = require("passport");
 const SequelizeStore = require("connect-session-sequelize"(session.Store));
 const db = require("./database");
 const sessionStore = new SequelizeStore({ db });
+
+const app = express();
