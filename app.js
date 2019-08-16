@@ -2,6 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
 const authRouter = require("./auth");
+const apiRouter = require("./routes");
 
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const db = require("./database");
@@ -41,6 +42,7 @@ const configureApp = () => {
   app.use(passport.session());
 
   app.use("/auth", authRouter);
+  app.use("/api", apiRouter);
 }
 
 const startListening = () => {
