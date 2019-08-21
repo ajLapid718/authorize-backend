@@ -42,13 +42,11 @@ router.delete("/logout", (req, res, next) => {
       return next(err);
     }
     else {
-      res.redirect("/");
-      res.status(204).end();
+      res.status(204).redirect("/");
     }
   });
-  // res.redirect("/");
   // res.clearCookie('connect.sid');
-  // res.status(204).end();
+  // res.redirect("/");
 });
 
 router.get("/me", (req, res) => {
