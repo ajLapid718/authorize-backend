@@ -35,10 +35,18 @@ router.post("/signup", async (req, res, next) => {
   }
 });
 
-router.delete("/logout", (req, res) => {
+router.delete("/logout", (req, res, next) => {
   req.logout();
-  req.session.destroy();
-  res.redirect("/");
+  req.session.destroy((err) => {
+    if (err) {
+      return next(err);
+    }
+    else {
+      res.redirect("/");
+      res.status(204).end();
+    }
+  });
+  // res.redirect("/");
   // res.clearCookie('connect.sid');
   // res.status(204).end();
 });
