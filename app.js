@@ -3,6 +3,7 @@ const session = require("express-session");
 const passport = require("passport");
 const authRouter = require("./auth");
 const apiRouter = require("./routes");
+const cors = require("cors");
 
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const db = require("./database");
@@ -28,6 +29,19 @@ const syncDb = async () => {
 const configureApp = () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+
+  app.use(cors({ credentials: true, origin: 'http://localhost:3000' }))
+
+  /*
+  
+  app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.header("Access-Control-Allow-Credentials", true);
+    next();
+  });
+
+  */
 
   app.use(
     session({
